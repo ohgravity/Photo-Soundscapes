@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Soundscapes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <img src="images/IMG_2045.JPG" alt="" />
+      <span class="sound">motorists</span>
+    </div>
+    <div data-key="83" class="key">
+      <img src="images/IMG_2046.JPG" alt="" />
+      <span class="sound">mailboxes</span>
+    </div>
+    <div data-key="68" class="key">
+      <img src="images/IMG_2047.JPG" alt="" />
+      <span class="sound">tiger</span>
+    </div>
+    <div data-key="70" class="key">
+      <img src="images/IMG_2048.JPG" alt="" />
+      <span class="sound">cyclist</span>
+    </div>
+    <div data-key="71" class="key">
+      <img src="images/IMG_2050.JPG" alt="" />
+      <span class="sound">water</span>
+    </div>
+    <div data-key="72" class="key">
+      <img src="images/IMG_2051.JPG" alt="" />
+      <span class="sound">crate</span>
+    </div>
+    <div data-key="74" class="key">
+      <img src="images/IMG_2052.JPG" alt="" />
+      <span class="sound">onions</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="audio-samples/motorists.wav"></audio>
+  <audio data-key="83" src="audio-samples/mailboxes.wav"></audio>
+  <audio data-key="68" src="audio-samples/tiger.wav"></audio>
+  <audio data-key="70" src="audio-samples/cyclist.wav"></audio>
+  <audio data-key="71" src="audio-samples/water.wav"></audio>
+  <audio data-key="72" src="audio-samples/crate.wav"></audio>
+  <audio data-key="74" src="audio-samples/onions.wav"></audio>
+
+
+  <script>
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return; // stop the function from running altogether
+      audio.currentTime = 0; // rewind to the start
+      audio.play();
+      key.classList.add('playing');
+    }
+
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return; //skip it if it's not a transform
+      this.classList.remove('playing');
+    }
+
+    const keys = document.querySelectorAll(".key"); // this is an array; can't add event listener to array, so need to use forEach (below)
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
+
+  </script>
+
+
+</body>
+
+</html>
