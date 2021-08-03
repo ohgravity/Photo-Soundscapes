@@ -15,6 +15,11 @@
   <h1>Photo Soundscapes</h1>
   <p>Press the key shown in parentheses to hear a photo's soundscape</p>
 
+  <div id="volume">
+    <label for="volume">Volume:</label>
+    <input type="range" value="20" min="00" max="99" onchange="vol()" onmousemove="vol()" id="volRange">
+  </div>
+
   <div class="keys">
     <div data-key="65" class="key">
       <img src="images/IMG_2045.JPG" alt="" />
@@ -73,6 +78,12 @@
     const keys = document.querySelectorAll(".key"); // this is an array; can't add event listener to array, so need to use forEach (below)
     keys.forEach(key => key.addEventListener('transitionend', removeTransition));
     window.addEventListener('keydown', playSound);
+
+    function vol() {
+        const a = document.querySelectorAll("audio");
+        const slider = `0.${document.querySelector("#volRange").value}`;
+        a.forEach((audio) => audio.volume = slider);
+      }
     
   </script>
 
