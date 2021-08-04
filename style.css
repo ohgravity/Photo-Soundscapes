@@ -1,3 +1,7 @@
+:root {
+  --accent-bg-color: #fde49c;
+}
+
 html {
   font-size: 10px;
   background: #ffb740;
@@ -18,7 +22,7 @@ h1 {
   text-align: center;
   padding: 3rem 0;
   margin-top: 6rem;
-  background: #fde49c;
+  background: var(--accent-bg-color);
 }
 
 p {
@@ -76,4 +80,15 @@ img {
 #volume {
   text-align: center;
   font-size: 1.75rem;
+}
+
+footer {
+  background-color: var(--accent-bg-color);
+  height: 4rem;
+}
+
+.footer-text {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 1rem;
 }
